@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Jacket on the Chair - Father's Day Story</title>
+    <style>
+        :root {
+            --bg-gradient-start: #0a1128;
+            --bg-gradient-end: #1c1a27;
+            --amber-glow: #ffb347;
+            --text-light: #f4f4f6;
+            --text-muted: #a0a5b5;
+            --panel-bg: rgba(255, 255, 255, 0.05);
+            --panel-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 左側：專輯封面與播放器 */
+        .player-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .album-art-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            aspect-ratio: 1 / 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 179, 71, 0.15);
+            margin-bottom: 30px;
+        }
+
+        .album-art {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .song-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #ffffff, var(--amber-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .song-artist {
+            font-size: 16px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .audio-player {
+            width: 100%;
+            max-width: 340px;
+            margin-top: 10px;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 右側：歌詞滾動區 */
+        .lyrics-side {
+            display: flex;
+            flex-direction: column;
+            max-height: 550px;
+        }
+
+        .lyrics-header {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber-glow);
+            margin-bottom: 15px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 10px;
+        }
+
+        .lyrics-container {
+            overflow-y: auto;
+            padding-right: 15px;
+            flex-grow: 1;
+            scroll-behavior: smooth;
+        }
+
+        /* 客製化滾動條 */
+        .lyrics-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .lyrics-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .lyrics-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .lyrics-container::-webkit-scrollbar-thumb:hover {
+            background: var(--amber-glow);
+        }
+
+        .lyric-block {
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: var(--amber-glow);
+            font-weight: bold;
+            opacity: 0.7;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .line {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            opacity: 0.85;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .line:hover {
+            opacity: 1;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 179, 71, 0.5);
+        }
+
+        /* 響應式排版 (手機版) */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 25px;
+                gap: 30px;
+            }
+            .lyrics-side {
+                max-height: 400px;
+            }
+            .album-art-wrapper {
+                max-width: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="player-side">
+            <div class="album-art-wrapper">
+                <img src="http://googleusercontent.com/generated_image_content/0" alt="The Jacket on the Chair Album Art" class="album-art">
+            </div>
+            <div class="song-info">
+                <div class="song-title">The Jacket on the Chair</div>
+                <div class="song-artist">A Father's Day Story</div>
+            </div>
+            <audio controls class="audio-player" src="http://googleusercontent.com/file_content/1"></audio>
+        </div>
+
+        <div class="lyrics-side">
+            <div class="lyrics-header">Lyrics</div>
+            <div class="lyrics-container">
+                
+                <div class="lyric-block">
+                    <span class="tag">[Verse 1]</span>
+                    <p class="line">The evening shadows gathered on the floor,</p>
+                    <p class="line">A summer twilight slipping through the door.</p>
+                    <p class="line">A quiet house under a starlit sky,</p>
+                    <p class="line">And two bright smiles that held a sweet surprise.</p>
+                    <p class="line">They placed a wrapped-up package in my hands,</p>
+                    <p class="line">With nervous laughter I could understand.</p>
+                    <p class="line">Their eyes were shining in the amber light,</p>
+                    <p class="line">Holding the words they couldn't speak tonight.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Pre-Chorus]</span>
+                    <p class="line">Years pass like rivers flowing to the sea,</p>
+                    <p class="line">But love stays frozen in a memory.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Chorus]</span>
+                    <p class="line">It’s more than just a jacket on a Father’s Day,</p>
+                    <p class="line">More than the silver threads and cloth of gray.</p>
+                    <p class="line">It’s every crayon drawing, every bedtime song,</p>
+                    <p class="line">The little hands I held as they grew strong.</p>
+                    <p class="line">When I put it on, I feel them standing near,</p>
+                    <p class="line">Two warming stars that chase away the fear.</p>
+                    <p class="line">Though they have grown and time will have its way,</p>
+                    <p class="line">I’m wrapped inside a love that’s here to stay.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Verse 2]</span>
+                    <p class="line">The jacket fit as though it always knew</p>
+                    <p class="line">The heavy lifting that a life can do.</p>
+                    <p class="line">The schoolyard gates, the dust upon the floor,</p>
+                    <p class="line">The quiet steps behind a closing door.</p>
+                    <p class="line">One sleeve holds memories of bicycle rides,</p>
+                    <p class="line">The other caught the tears I helped them dry.</p>
+                    <p class="line">And in the mirror, looking back at me,</p>
+                    <p class="line">I see the man they still believe I am.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Pre-Chorus]</span>
+                    <p class="line">The world keeps turning, seasons fade and glow,</p>
+                    <p class="line">But some small gifts carry more than they can show.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Chorus]</span>
+                    <p class="line">It’s more than just a jacket on a Father’s Day,</p>
+                    <p class="line">More than the silver threads and cloth of gray.</p>
+                    <p class="line">It’s every crayon drawing, every bedtime song,</p>
+                    <p class="line">The little hands I held as they grew strong.</p>
+                    <p class="line">When I put it on, I feel them standing near,</p>
+                    <p class="line">Two warming stars that chase away the fear.</p>
+                    <p class="line">Though they have grown and time will have its way,</p>
+                    <p class="line">I’m wrapped inside a love that’s here to stay.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Bridge]</span>
+                    <p class="line">One day these halls will echo soft and wide,</p>
+                    <p class="line">Their dreams will take them with the rising tide.</p>
+                    <p class="line">But on some winter evening, years from now,</p>
+                    <p class="line">I’ll find this jacket by the door somehow.</p>
+                    <p class="line">I’ll touch the fabric, smiling through the gray,</p>
+                    <p class="line">And hear their childhood voices start to play.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Guitar Solo]</span>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Chorus - Final]</span>
+                    <p class="line">It’s more than just a jacket on a Father’s Day,</p>
+                    <p class="line">Two daughters weaving love where words would fail.</p>
+                    <p class="line">A simple gift becoming something rare,</p>
+                    <p class="line">A lifetime folded in the coat I wear.</p>
+                    <p class="line">And when the colder winds come traveling through the night,</p>
+                    <p class="line">I’ll feel the warmth of them, burning bright.</p>
+                    <p class="line">For every thread reminds me, come what may,</p>
+                    <p class="line">The greatest gift I’ve known calls me "Dad" today.</p>
+                </div>
+
+                <div class="lyric-block">
+                    <span class="tag">[Outro]</span>
+                    <p class="line">The lamplight lingers softly on the chair,</p>
+                    <p class="line">The beautiful jacket hanging quietly there.</p>
+                    <p class="line">Not just a gift, but a story to be told—</p>
+                    <p class="line">Two daughters’ love... worth more than gold.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
